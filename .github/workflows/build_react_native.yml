@@ -1,0 +1,51 @@
+name: Build React Native Application
+on:
+    push:
+        branches: [main]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [20.x, 21.x]
+        steps:
+            - uses: actions/checkout@v2
+            - name: Use Node.js ${{ matrix.node-version }}
+                uses: actions/setup-node@v2
+                with:
+                    node-version: ${{ matrix.node-version }}
+                    cache: yarn
+            - name: Setup EAS
+                uses: expo/expo-github-action@v8
+                with:
+                    eas-version: latest
+                    token: ${{ secrets.EXPO_TOKEN }}
+            - name: 📦 Install dependencies
+                run: yarn install
+            - name: 🚀 Build app
+                run: eas build --platform android --non-interactive --no-wait
+            - name: yarn ci, build and test
+                run: |
+                    yarn predeploy
+            - name: Setup Pages
+                id: pages
+                uses: actions/configure-pages@v3
+
+            - name: Upload artifact
+                uses: actions/upload-pages-artifact@v2
+                with:
+                    path: dist
+                    if-no-files-found: error
+    deploy:
+        environment:
+            name: github-pages
+            url: ${{steps.deployment.outputs.page_url}}
+        runs-on: ubuntu-latest
+        permissions:
+            pages: write      # to deploy to Pages
+            id-token: write   # to verify the deployment originates from an appropriate source
+        needs: build_test
+        steps:
+            - name: Deploy to GitHub Pages
+                id: deployment
+                uses: actions/deploy-pages@v2
