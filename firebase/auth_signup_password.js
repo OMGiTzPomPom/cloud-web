@@ -1,4 +1,4 @@
-import app from "./firebaseConfig";
+import app from "../firebaseConfig";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import {ValidateEmail, ValidatePassword} from "./credentialChecker";
 
