@@ -1,12 +1,12 @@
 import React from "react";
 // import "../firebaseConfig"
 import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
-import { signup } from "../firebase/auth_signup_password";
-import { signin } from "../firebase/auth_signin_password";
-import { signInWithFacebook } from "../firebase/auth_facebook_signin_popup"
-import { signinWithGithub } from "../firebase/auth_github_signin_popup";
-import { loginWithPhoneNumber } from "../firebase/auth_phone_signin";
-import { verifyCode } from "../firebase/auth_phone_verify_code";
+import { signup } from "./firebase/auth_signup_password";
+import { signin } from "./firebase/auth_signin_password";
+import { signInWithFacebook } from "./firebase/auth_facebook_signin_popup"
+import { signinWithGithub } from "./firebase/auth_github_signin_popup";
+import { loginWithPhoneNumber } from "./firebase/auth_phone_signin";
+import { verifyCode } from "./firebase/auth_phone_verify_code";
 // import Toast from 'react-native-root-toast';
 // import SnackBar from 'react-native-snackbar-component'
 export default function Page() {
