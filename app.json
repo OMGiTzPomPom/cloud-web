@@ -3,6 +3,7 @@
     "experiments": {
       "baseUrl": "/cloud-web"
     },
+    "scheme": "web-cloud-ynov",
     "name": "web-cloud-ynov",
     "slug": "web-cloud-ynov",
     "version": "1.0.0",
@@ -18,23 +19,28 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pompom.webcloudynov"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.omgitzpompom.webcloudynov"
+      "package": "com.pompom.webcloudynov"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "46e004eb-91b6-4966-8b1f-bf8c8f3dbbea"
+        "projectId": "a760bc3a-137b-4049-b05f-c14e36f4b827"
       }
     },
-    "owner": "omgitzpompom"
+    "plugins": [
+      "expo-router"
+    ]
   }
 }

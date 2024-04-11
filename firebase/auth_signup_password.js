@@ -1,41 +1,19 @@
-import "./firebaseConfig.js";
+import app from "../firebaseConfig";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import {ValidateEmail} from "./credentialChecker";
-import {ValidatePassword} from "./credentialChecker";
-import Toast from 'react-native-root-toast';
 
-const auth = getAuth ();
+const auth = getAuth(app);
 export const signup = (email, password) => {
-        if(!ValidateEmail(email)) {
-            Toast.show("Email not valid", {
-                duration: Toast.durations.LONG,
-                position: Toast.positions.BOTTOM,
-                hideOnPress: true
-            });
-            return;
-        }
-        if(!ValidatePassword(password)) {
-            Toast.show("Password must be at least 8 chars and Max 30. Have at least an hyper case and lower case char, a number and a special char. Ex: Password_1234", {
-                duration: Toast.durations.LONG,
-                position: Toast.positions.BOTTOM,
-                hideOnPress: true
-            });
-            return;
-        }
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                Toast.show("Sign up success", {
-                    duration: Toast.durations.LONG,
-                    position: Toast.positions.BOTTOM,
-                    hideOnPress: true
-                });
-            })
-            .catch((error) => {
-                Toast.show(`[${error.code}] ${error.message}`, {
-                    duration: Toast.durations.LONG,
-                    position: Toast.positions.BOTTOM,
-                    hideOnPress: true
-                });
-            });
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed up 
+            const user = userCredential.user;
+            // ...
+            console.log(user)
+            console.log("signup success")
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(error);
+        });
 }
