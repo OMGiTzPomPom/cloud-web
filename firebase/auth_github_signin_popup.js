@@ -1,4 +1,4 @@
-import app from "../firebaseConfig";
+import app from "./firebaseConfig";
 import { getAuth, signInWithPopup, GithubAuthProvider } from "firebase/auth";
 import { provider } from "./auth_github_provider_create";
 
